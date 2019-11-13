@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package grpc_end;
+
+service End {
+    // 处理网关请求
+    rpc DoRequest (Request) returns (Response) {}
+}
+
+message Request {
+    string controller = 1;          // 请求的controller
+    string action = 2;              // 请求的action
+    map<string, string> params = 3; // 请求附带的所有参数
+    map<string, bytes> files = 4;   // 请求附带的文件, key为文件字段名，val为文件的原始数据
+    map<string, string> header = 5; // 网关补全的字段
+
+}
+
+message Response {
+    bool success = 1;    // 供网关确认业务是否成功
+    string userId = 2;   // 供网关执行业务
+    string orgId = 3;    // 供网关执行业务
+    int32 userLevel = 4; // 用户的访问权限
+    bytes data = 5;      // 实际返回给客户端的数据，网关将原样交给客户端
+}
