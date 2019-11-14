@@ -9,7 +9,7 @@ import (
 
 func BenchmarkHttpAgent(t *testing.B) {
 	for i := 0; i < 20; i++ {
-		request := New()
+		request := NewHttpAgent()
 		request = request.SetHeader("AHost", "commonServer")
 		request = request.Post("https://s-api.xyhj.io/v1/w/zh/user/loginByAccount")
 
@@ -29,7 +29,7 @@ func BenchmarkHttpAgent(t *testing.B) {
 }
 
 func TestHttpAgent_Timeout(t *testing.T) {
-	request := New()
+	request := NewHttpAgent()
 	request = request.SetHeader("AHost", "commonServer").Timeout(time.Millisecond * 500)
 	request = request.Post("https://s-api.xyhj.io/v1/w/zh/user/loginByAccount")
 
@@ -51,7 +51,7 @@ func TestHttpAgent(t *testing.T) {
 	// 通过向基础公共服务进行登录注册上传文件，验证httpAgent是否有效
 
 	// 1. POST登录
-	request := New()
+	request := NewHttpAgent()
 	request = request.SetHeader("AHost", "commonServer")
 	request = request.Post("https://s-api.xyhj.io/v1/w/zh/user/loginByAccount")
 
@@ -102,7 +102,7 @@ func TestHttpAgent(t *testing.T) {
 }
 
 func TestHttpAgent_CurlCommand(t *testing.T) {
-	request := New()
+	request := NewHttpAgent()
 	request = request.SetHeader("AHost", "commonServer").Timeout(time.Millisecond * 500)
 	request = request.Post("https://s-api.xyhj.io/v1/w/zh/user/loginByAccount")
 

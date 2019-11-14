@@ -59,13 +59,13 @@ type File struct {
 // For Example
 //
 // to send a GET request, you can write like this:
-// 		resp, body, err := New().Get(url).End()
+// 		resp, body, err := NewHttpAgent().Get(url).End()
 //
 // with data:
-// 		resp, body, err := New().Get(url).Query(map[string]string{"hello": "world"}).End()
+// 		resp, body, err := NewHttpAgent().Get(url).Query(map[string]string{"hello": "world"}).End()
 //
 // and set a timeout:
-// 		resp, body, err := New().Get(url).Query(map[string]string{"hello": "world"}).SetTimeout(time.Second*3).End()
+// 		resp, body, err := NewHttpAgent().Get(url).Query(map[string]string{"hello": "world"}).SetTimeout(time.Second*3).End()
 //
 //
 //
@@ -75,13 +75,13 @@ type File struct {
 // For Example
 //
 // to send a POST request with application/x-www-form-urlencoded contentType:
-// 		resp, body, err := New().Post(url).ContentType(TypeFormUrlencoded).SendForm(map...).End()
+// 		resp, body, err := NewHttpAgent().Post(url).ContentType(TypeFormUrlencoded).SendForm(map...).End()
 //
 // send a POST request with application/json:
-// 		resp, body, err := New().Post(url).ContentType(TypeJson).SendData([]byte...).End()
+// 		resp, body, err := NewHttpAgent().Post(url).ContentType(TypeJson).SendData([]byte...).End()
 //
 // send a POST request with multipart/form-data:
-// 		request := New().Post(url).ContentType(TypeMultipartFormData)
+// 		request := NewHttpAgent().Post(url).ContentType(TypeMultipartFormData)
 // 		request = request.SendFile(f1)
 // 		request = request.SendFile(f2)
 // 		resp, body, err := request.End()
@@ -101,7 +101,7 @@ type HttpAgent struct {
 	Errors    []error
 }
 
-func New() *HttpAgent {
+func NewHttpAgent() *HttpAgent {
 	cookieJarOptions := cookiejar.Options{
 		PublicSuffixList: publicsuffix.List,
 	}
