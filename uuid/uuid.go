@@ -11,9 +11,14 @@ var (
 
 // InitUUID init uuid seed
 // startTime more closer the time now, the smaller the generated id
-func InitUUID() {
+// if no startTime set, 2014-09-01 default
+func InitUUID(startTime ...time.Time) {
+	t := time.Time{}
+	if len(startTime) > 0 {
+		t = startTime[0]
+	}
 	sf = snowflake.NewSnowflake(snowflake.Settings{
-		StartTime: time.Time{},
+		StartTime: t,
 	})
 }
 
