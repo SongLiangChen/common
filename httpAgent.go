@@ -314,7 +314,9 @@ func (s *HttpAgent) MakeRequest() (*http.Request, error) {
 			body = bytes.NewReader(s.Data)
 
 		default:
-			return nil, errors.New("unknow content type")
+			e := errors.New("unknow content type")
+			s.Errors = append(s.Errors, e)
+			return nil, e
 		}
 
 	default:
@@ -323,6 +325,7 @@ func (s *HttpAgent) MakeRequest() (*http.Request, error) {
 
 	request, err := http.NewRequest(string(s.Method), urlStr, body)
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return nil, err
 	}
 
@@ -352,17 +355,20 @@ func (s *HttpAgent) End() (*http.Response, []byte, error) {
 
 	req, err = s.MakeRequest()
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return nil, nil, err
 	}
 
 	resp, err = s.Client.Do(req)
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return nil, nil, err
 	}
 	defer resp.Body.Close()
 
 	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return nil, nil, err
 	}
 
@@ -372,10 +378,12 @@ func (s *HttpAgent) End() (*http.Response, []byte, error) {
 func (s *HttpAgent) CurlCommand() (string, error) {
 	req, err := s.MakeRequest()
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return "", err
 	}
 	cmd, err := http2curl.GetCurlCommand(req)
 	if err != nil {
+		s.Errors = append(s.Errors, err)
 		return "", err
 	}
 	return cmd.String(), nil

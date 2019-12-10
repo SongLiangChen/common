@@ -250,3 +250,12 @@ func Transfer(orgId int, fromAccountId, toAccountId int64, amount string) *base_
 2003 账户不存在
 2012 账户币种不同
 ```
+
+- 提币账户检查
+func CheckAccountByWdw(orgId int, userId int64, currency string) *base_server_sdk.Error 
+
+```go
+异常错误:
+1001 参数错误
+2003 账户不存在
+```

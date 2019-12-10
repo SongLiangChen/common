@@ -9,24 +9,26 @@ import (
 )
 
 type User struct {
-	UserId      int64  `json:"userId"`
-	OrgId       int    `json:"orgId"`
-	CountryCode string `json:"countryCode"`
-	Phone       string `json:"phone"`
-	Email       string `json:"email"`
-	Account     string `json:"account"`
-	LoginPwd    string `json:"loginPwd"`
-	TransPwd    string `json:"transPwd"`
-	NickName    string `json:"nickName"`
-	Avatar      string `json:"avatar"`
-	FirstName   string `json:"firstName"`
-	LastName    string `json:"lastName"`
-	IdCard      string `json:"idCard"`
-	Sex         int    `json:"sex"`
-	BirthDay    string `json:"birthDay"`
-	Status      int    `json:"status"`
-	CreateTime  int64  `json:"createTime"`
-	Ext         string `json:"ext"`
+	UserId           int64  `json:"userId"`
+	OrgId            int    `json:"orgId"`
+	CountryCode      string `json:"countryCode"`
+	Phone            string `json:"phone"`
+	Email            string `json:"email"`
+	Account          string `json:"account"`
+	ThirdPartyOpenId string `json:"thirdPartyOpenId"`
+	ThirdPartyType   int    `json:"thirdPartyType"`
+	LoginPwd         string `json:"loginPwd"`
+	TransPwd         string `json:"transPwd"`
+	NickName         string `json:"nickName"`
+	Avatar           string `json:"avatar"`
+	FirstName        string `json:"firstName"`
+	LastName         string `json:"lastName"`
+	IdCard           string `json:"idCard"`
+	Sex              int    `json:"sex"`
+	BirthDay         string `json:"birthDay"`
+	Status           int    `json:"status"`
+	CreateTime       int64  `json:"createTime"`
+	Ext              string `json:"ext"`
 }
 
 func ReserveUserId() (int64, *base_server_sdk.Error) {

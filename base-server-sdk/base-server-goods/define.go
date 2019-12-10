@@ -73,8 +73,8 @@ type Sku struct {
 	Specs       string `json:"specs"`       // 规格列表
 	SortOrder   int    `json:"sortOrder"`   // 规格序列
 	Price       string `json:"price"`       // 价格
-	Stock       int    `json:"stock"`       // 库存
-	FreezeStock int    `json:"freezeStock"` // 冻结库存
+	Stock       string `json:"stock"`       // 库存
+	FreezeStock string `json:"freezeStock"` // 冻结库存
 	CreateTime  int64  `json:"createTime"`  // 创建时间
 	UpdateTime  int64  `json:"updateTime"`  // 更新时间
 }
@@ -113,4 +113,13 @@ type TaskGoodsChangeStatus struct {
 type TaskCallBack struct {
 	CallBackUrl string            `json:"callBackUrl"`
 	Data        map[string]string `json:"data"`
+}
+
+//批量操作库存
+type TaskBatchOperateStock struct {
+	MchId     int64
+	SkuId     int64
+	ProductId int64
+	Qty       string
+	OpType    StockOpType
 }

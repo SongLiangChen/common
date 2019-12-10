@@ -415,3 +415,23 @@ func Transfer(orgId int, fromAccountId, toAccountId int64, amount string) *base_
 	}
 	return nil
 }
+
+
+// 账户划转
+func CheckAccountByWdw(orgId int, userId int64, currency string) *base_server_sdk.Error {
+	if orgId <= 0 || userId <= 0 || currency == "" {
+		return base_server_sdk.ErrInvalidParams
+	}
+
+	params := make(map[string]string)
+	params["orgId"] = strconv.Itoa(orgId)
+	params["userId"] = strconv.FormatInt(userId, 10)
+	params["currency"] = currency
+
+	client := base_server_sdk.Instance
+	_, err := client.DoRequest(client.Hosts.AccountServerHost, "account", "checkAccountByWdw", params)
+	if err != nil {
+		return err
+	}
+	return nil
+}

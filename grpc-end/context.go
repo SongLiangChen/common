@@ -112,6 +112,47 @@ func (c *GRpcContext) GetStringMap(key string) map[string]string {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
+type Session struct {
+	OrgId  int   `json:"orgId"`
+	UserId int64 `json:"userId"`
+}
+
+// GetSession returns session from gateway
+// returns nil if user not login
+func (c *GRpcContext) GetSession() *Session {
+	orgId := c.IntHeader(HeaderKeyOrgId)
+	userId := c.Int64Header(HeaderKeyUserId)
+	if orgId <= 0 || userId <= 0 {
+		return nil
+	}
+
+	return &Session{
+		OrgId:  orgId,
+		UserId: userId,
+	}
+}
+
+// GetOrgIdFromSession returns orgId in session
+// returns 0 if session is nil
+func (c *GRpcContext) GetOrgIdFromSession() int {
+	s := c.GetSession()
+	if s != nil {
+		return s.OrgId
+	}
+	return 0
+}
+
+// GetUserIdFromSession returns userId in session
+// returns 0 if session is nil
+func (c *GRpcContext) GetUserIdFromSession() int64 {
+	s := c.GetSession()
+	if s != nil {
+		return s.UserId
+	}
+	return 0
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
 
 // IsParamExist returns true is param exist
 func (c *GRpcContext) IsParamExist(key string) bool {
@@ -290,6 +331,9 @@ type Error struct {
 }
 
 func (c *GRpcContext) SuccessResponse(v interface{}) {
+	if v == nil {
+		v = make(map[string]interface{})
+	}
 	jsonStr, _ := json.Marshal(&SResponse{
 		Success: true,
 		PayLoad: v,

@@ -58,3 +58,21 @@ func IntSliceToStringSlice(arr []int) []string {
 	}
 	return toArr
 }
+
+func InStringSlice(val string, arr []string) bool {
+	for _, a := range arr {
+		if a == val {
+			return true
+		}
+	}
+	return false
+}
+
+func InIntSlice(val int, arr []int) bool {
+	for _, a := range arr {
+		if a == val {
+			return true
+		}
+	}
+	return false
+}

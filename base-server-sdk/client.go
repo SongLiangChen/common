@@ -19,6 +19,7 @@ type Hosts struct {
 	AiPayServerHost     string
 	InteractServerHost  string
 	GoodsServerHost     string
+	TbUserServerHost    string
 	// TODO add server host here
 }
 
