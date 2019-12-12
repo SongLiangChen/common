@@ -12,14 +12,7 @@ import (
 )
 
 type Hosts struct {
-	UserServerHost      string
-	AccountServerHost   string
-	StatisticServerHost string
-	OctopusServerHost   string
-	AiPayServerHost     string
-	InteractServerHost  string
-	GoodsServerHost     string
-	TbUserServerHost    string
+	ExampleServerHost string
 	// TODO add server host here
 }
 
@@ -78,8 +71,7 @@ func InitBaseServerSdk(c *Config) {
 			Transport: &http.Transport{
 				DialContext: (&net.Dialer{
 					Timeout:   c.RequestTimeout,
-					KeepAlive: 0,
-					DualStack: true,
+					KeepAlive: -1,
 				}).DialContext,
 				IdleConnTimeout:       c.IdleConnTimeout,
 				ResponseHeaderTimeout: c.RequestTimeout,
