@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/becent/golang-common/grpc-end"
-	"github.com/becent/golang-common/grpc-end/middleware"
+	"github.com/SongLiangChen/common/grpc-end"
+	"github.com/SongLiangChen/common/grpc-end/middleware"
 	"google.golang.org/grpc"
 	"math"
 	"time"

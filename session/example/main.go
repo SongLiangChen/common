@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/becent/golang-common/session"
-	_ "github.com/becent/golang-common/session/redis"
+	"github.com/SongLiangChen/common/session"
+	_ "github.com/SongLiangChen/common/session/redis"
 	"github.com/gin-gonic/gin"
 )
 

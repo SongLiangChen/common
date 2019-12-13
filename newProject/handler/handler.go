@@ -26,7 +26,7 @@ var handler_temple = `package handler
 import (
 	"fmt"
 
-	"github.com/becent/golang-common/gin-handler"
+	"github.com/SongLiangChen/common/gin-handler"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package uuid
 
 import (
-	"github.com/becent/golang-common/uuid/snowflake"
+	"github.com/SongLiangChen/common/uuid/snowflake"
 	"time"
 )
 

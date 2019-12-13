@@ -2,7 +2,7 @@ package grpc_end
 
 import (
 	"context"
-	"github.com/becent/golang-common/exception"
+	"github.com/SongLiangChen/common/exception"
 	json "github.com/json-iterator/go"
 	"math"
 	"strconv"

@@ -2,7 +2,7 @@ package example
 
 import (
 	"encoding/json"
-	"github.com/becent/golang-common/base-server-sdk"
+	"github.com/SongLiangChen/common/base-server-sdk"
 	"strconv"
 )
 

@@ -3,7 +3,7 @@ package model
 import (
 	"bytes"
 	"fmt"
-	"github.com/becent/golang-common"
+	"github.com/SongLiangChen/common"
 	"os"
 	"strings"
 )

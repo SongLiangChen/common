@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/becent/golang-common/grpc-end"
+	"github.com/SongLiangChen/common/grpc-end"
 	"runtime"
 
 	log "github.com/sirupsen/logrus"

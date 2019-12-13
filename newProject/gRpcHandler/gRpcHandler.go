@@ -26,7 +26,7 @@ var gRpcHandler_temple = `package gRpcHandler
 import (
 	"fmt"
 
-	"github.com/becent/golang-common/grpc-end"
+	"github.com/SongLiangChen/common/grpc-end"
 )
 
 // a example for grpc request

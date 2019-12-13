@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/becent/golang-common/session"
+	"github.com/SongLiangChen/common/session"
 
 	"github.com/gomodule/redigo/redis"
 )

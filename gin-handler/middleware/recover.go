@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/becent/golang-common/gin-handler"
+	"github.com/SongLiangChen/common/gin-handler"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"runtime"

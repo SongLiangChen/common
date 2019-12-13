@@ -6,7 +6,7 @@
 
 # 相关依赖
 ```go
-github.com/becent/golang-common
+github.com/SongLiangChen/common
 ```
 
 

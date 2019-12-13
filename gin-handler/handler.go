@@ -3,8 +3,8 @@ package gin_handler
 import (
 	"encoding/json"
 	"errors"
-	"github.com/becent/golang-common"
-	"github.com/becent/golang-common/exception"
+	"github.com/SongLiangChen/common"
+	"github.com/SongLiangChen/common/exception"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
