@@ -122,7 +122,7 @@ type Session struct {
 func (c *GRpcContext) GetSession() *Session {
 	orgId := c.IntHeader(HeaderKeyOrgId)
 	userId := c.Int64Header(HeaderKeyUserId)
-	if orgId <= 0 || userId <= 0 {
+	if userId <= 0 {
 		return nil
 	}
 
