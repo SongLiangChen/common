@@ -104,7 +104,13 @@ func NewHandler(cfg *Config) gin.HandlerFunc {
 			}
 
 		default:
-			h.ErrResponse(&exception.Exception{-1, "unSuported http method"})
+			_ = c.Request.ParseForm()
+			for key, val := range c.Request.Form {
+				if val[0] != "" {
+					params[key] = val[0]
+				}
+			}
+			c.Set(KEY_PARAMS, params)
 		}
 
 		// check signature
