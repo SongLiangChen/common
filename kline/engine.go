@@ -103,14 +103,14 @@ func (e *Engine) IncrementalUpdateKline(k *Kline) []*Kline {
 				last.Low = sk.Low
 			}
 			last.Close = sk.Close
-			last.Volume += sk.Volume // 累加24小时交易量
+			last.Volume, _ = common.BcAdd(last.Volume, sk.Volume, 18) // 累加24小时交易量
 			ret = append(ret, last)
 			continue
 		}
 
 		// 同一个24小时
 		if last.CreateTime/24*60*60 == sk.CreateTime/24*60*60 {
-			sk.Volume += last.Volume // 累加24小时交易量
+			sk.Volume, _ = common.BcAdd(sk.Volume, last.Volume, 18) // 累加24小时交易量
 		}
 		ret = append(ret, sk.Copy())
 

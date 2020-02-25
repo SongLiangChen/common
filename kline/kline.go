@@ -8,7 +8,7 @@ type Kline struct {
 	Close      string // 收盘价
 	CreateTime int64  // 创建时间
 	TimeScale  int64  // 时间刻度
-	Volume     int64  // 24小时交易量
+	Volume     string // 24小时交易量
 }
 
 func (k *Kline) Copy() *Kline {
