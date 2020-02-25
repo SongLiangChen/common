@@ -124,6 +124,15 @@ func (e *Engine) SetCacheLimit(l int) {
 	e.cacheLimit = l
 }
 
+// 从后往前添加k线
+func (e *Engine) AppendKline(k *Kline) {
+	key := fmt.Sprintf("%v_%v", k.CoinType, k.TimeScale)
+	if _, ok := e.cachedKline[key]; !ok {
+		e.cachedKline[key] = make([]*Kline, 0)
+	}
+	e.cachedKline[key] = append(e.cachedKline[key], k)
+}
+
 // 缓存新的增量更新数据
 func (e *Engine) cacheKlines(ks []*Kline) {
 	e.Lock()
