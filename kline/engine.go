@@ -162,7 +162,6 @@ func (e *Engine) cacheKlines(ks []*Kline) {
 		if n > e.cacheLimit {
 			e.cachedKline[key] = e.cachedKline[key][n-e.cacheLimit:]
 		}
-		println(key, len(e.cachedKline[key]))
 	}
 }
 
