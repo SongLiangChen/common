@@ -3,9 +3,10 @@ package model
 import (
 	"bytes"
 	"fmt"
-	"github.com/SongLiangChen/common"
 	"os"
 	"strings"
+
+	"github.com/SongLiangChen/common"
 )
 
 func G_model(projectName string) error {
@@ -66,10 +67,10 @@ func G_model(projectName string) error {
 				return err
 			}
 
-			columnName = CamelCase([]byte(columnName))
+			CameCasecolumnName := CamelCase([]byte(columnName))
 
 			// println(columnName, columnType, columnKey)
-			buf.WriteString(fmt.Sprintf("	%s ", strings.Title(columnName)))
+			buf.WriteString(fmt.Sprintf("	%s ", strings.Title(CameCasecolumnName)))
 			if strings.Index(columnType, "bigint") != -1 {
 				buf.WriteString("int64 ")
 			} else if strings.Index(columnType, "int") != -1 {
@@ -84,6 +85,10 @@ func G_model(projectName string) error {
 				buf.WriteString("string ")
 			} else if strings.Index(columnType, "decimal") != -1 {
 				buf.WriteString("float64 ")
+			} else if strings.Index(columnType, "datetime") != -1 {
+				buf.WriteString("JSONTime ")
+			} else if strings.Index(columnType, "double") != -1 {
+				buf.WriteString("float64 ")
 			}
 
 			temp := ""
@@ -91,7 +96,7 @@ func G_model(projectName string) error {
 				temp = ";primary_key;AUTO_INCREMENT"
 			}
 
-			buf.WriteString(fmt.Sprintf("`gorm:\"column:%s%s\" json:\"%s\"` // %s\n", columnName, temp, columnName, columnComment))
+			buf.WriteString(fmt.Sprintf("`gorm:\"column:%s%s\" json:\"%s\"` // %s\n", columnName, temp, CameCasecolumnName, columnComment))
 		}
 		structRows.Close()
 
