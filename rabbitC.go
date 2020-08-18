@@ -186,7 +186,7 @@ func (r *RabbitC) watchRabbit() {
 
 		case rtn, ok := <-notifyReturnChan:
 			if !ok {
-				ErrorLog("watchRabbit", rtn, "notifyReturnChan broken")
+				ErrorLog("watchRabbit", nil, "notifyReturnChan broken")
 				notifyReturnChan = make(chan amqp.Return)
 				break
 			}
@@ -225,7 +225,7 @@ func (r *RabbitC) watchRabbit() {
 
 		case closeError, ok := <-notifyCloseChan:
 			if !ok {
-				ErrorLog("watchRabbit", closeError, "notifyCloseChan broken")
+				ErrorLog("watchRabbit", nil, "notifyCloseChan broken")
 				notifyCloseChan = make(chan *amqp.Error)
 				break
 			}
