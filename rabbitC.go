@@ -1,9 +1,10 @@
 package common
 
 import (
-	"github.com/streadway/amqp"
 	"sync"
 	"time"
+
+	"github.com/streadway/amqp"
 )
 
 type RabbitC struct {
@@ -183,7 +184,12 @@ func (r *RabbitC) watchRabbit() {
 				Body:         m.Body,
 			})
 
-		case rtn := <-notifyReturnChan:
+		case rtn, ok := <-notifyReturnChan:
+			if !ok {
+				ErrorLog("watchRabbit", rtn, "notifyReturnChan broken")
+				notifyReturnChan = make(chan amqp.Return)
+				break
+			}
 			if rtn.ReplyCode != 0 {
 				ErrorLog("watchRabbit", rtn, "rabbit msg been return")
 			}
@@ -218,6 +224,11 @@ func (r *RabbitC) watchRabbit() {
 			InfoLog("watchRabbit", nil, "[RabbitC] reconnect server success")
 
 		case closeError, ok := <-notifyCloseChan:
+			if !ok {
+				ErrorLog("watchRabbit", closeError, "notifyCloseChan broken")
+				notifyCloseChan = make(chan *amqp.Error)
+				break
+			}
 			if ok {
 				ErrorLog("watchRabbit", nil, "[RabbitC] receive close error: "+closeError.Error())
 				brokePipLine = true
