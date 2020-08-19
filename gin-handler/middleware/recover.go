@@ -13,17 +13,18 @@ import (
 // and panic exception will be logged to log file.
 //
 // defer() and recover() will be take about 20ns loss every request, but it still necessary.
-func Recover(pf ...func(*gin.Context)) gin.HandlerFunc {
+func Recover(pf ...func(c *gin.Context, stack string)) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {
+				s := stack()
 				log.WithFields(log.Fields{
 					"app":   c.GetString(gin_handler.KEY_APPNAME),
-					"stack": stack(),
+					"stack": s,
 				}).Error(err)
 
 				for _, f := range pf {
-					f(c)
+					f(c, s)
 				}
 			}
 		}()
